@@ -3,101 +3,974 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Leandro Orellana | Software Developer</title>
+  <meta name="theme-color" content="#10051f" />
+  <meta name="description" content="Portfolio de Leandro Orellana, desarrollador de software especializado en aplicaciones móviles, backend e inteligencia artificial." />
+  <title>Leandro Orellana — Software Developer</title>
   <style>
-    *{box-sizing:border-box;margin:0;padding:0;font-family:Arial, Helvetica, sans-serif}
-    body{background:#0f172a;color:#e5e7eb;line-height:1.6}
-    header{padding:60px 20px;text-align:center}
-    header h1{font-size:42px;margin-bottom:10px}
-    header p{color:#9ca3af}
+    @import url("https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Space+Grotesk:wght@400;500;600;700&display=swap");
 
-    nav{display:flex;justify-content:center;gap:30px;padding:15px;background:#020617;position:sticky;top:0}
-    nav a{color:#e5e7eb;text-decoration:none;font-size:14px}
+    :root {
+      color-scheme: dark;
+      --night: #10051f;
+      --panel: #190b2b;
+      --pink: #ff3c9e;
+      --violet: #b45cff;
+      --cyan: #57ecff;
+      --muted: #b3a4c9;
+      --white: #fff8ff;
+      --mono: "DM Mono", "Courier New", monospace;
+      --sans: "Space Grotesk", Arial, sans-serif;
+    }
 
-    section{max-width:1000px;margin:auto;padding:60px 20px}
-
-    h2{margin-bottom:20px;font-size:28px}
-
-    .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:20px}
-
-    .card{background:#020617;padding:20px;border-radius:10px;border:1px solid #1f2937}
-
-    .card h3{margin-bottom:10px}
-
-    .tech span{display:inline-block;background:#1f2937;padding:6px 10px;border-radius:6px;font-size:12px;margin:4px}
-
-    .project a{color:#60a5fa;text-decoration:none;font-size:14px}
-
-    footer{text-align:center;padding:40px;color:#6b7280}
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      overflow: hidden;
+      background: var(--night);
+      color: var(--white);
+      font-family: var(--sans);
+      line-height: 1.65;
+    }
+    a { color: inherit; }
+    a:focus-visible { outline: 2px solid var(--cyan); outline-offset: 5px; }
+    .hero {
+      position: relative;
+      isolation: isolate;
+      width: 100%;
+      height: 100vh;
+      height: 100dvh;
+      overflow: hidden;
+      background: #10051f;
+    }
+    .scene {
+      position: absolute;
+      z-index: -2;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+    }
+    .hero::after {
+      position: absolute;
+      z-index: -1;
+      inset: 0;
+      background: linear-gradient(90deg, rgb(16 5 31 / 76%), rgb(16 5 31 / 32%) 58%, transparent),
+        linear-gradient(0deg, #10051f 0%, transparent 24%, transparent 73%, rgb(16 5 31 / 30%));
+      content: "";
+      pointer-events: none;
+    }
+    .topbar {
+      position: absolute;
+      z-index: 1;
+      top: 0;
+      right: 0;
+      left: 0;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 24px clamp(20px, 5vw, 64px);
+    }
+    .brand {
+      color: var(--white);
+      font-family: var(--mono);
+      font-size: 14px;
+      letter-spacing: .13em;
+      text-decoration: none;
+    }
+    .brand span { color: var(--pink); }
+    .top-status, .hero-foot {
+      color: #ead7f0;
+      font-family: var(--mono);
+      font-size: 10px;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+    }
+    .top-status span { color: var(--cyan); }
+    .identity {
+      position: absolute;
+      z-index: 1;
+      top: 17%;
+      left: clamp(20px, 5vw, 64px);
+      max-width: 340px;
+      pointer-events: none;
+      text-shadow: 0 2px 20px rgb(16 5 31 / 55%);
+    }
+    .identity p {
+      margin: 0 0 7px;
+      color: var(--cyan);
+      font-family: var(--mono);
+      font-size: 10px;
+      letter-spacing: .15em;
+      text-transform: uppercase;
+    }
+    .identity h1 {
+      margin: 0;
+      font-size: clamp(33px, 4.4vw, 52px);
+      letter-spacing: -.075em;
+      line-height: .98;
+    }
+    .identity h1 span { color: #ff8bc4; }
+    .section-nav {
+      position: absolute;
+      z-index: 1;
+      bottom: clamp(48px, 8vh, 76px);
+      left: 50%;
+      display: flex;
+      max-width: calc(100% - 32px);
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 9px;
+      transform: translateX(-50%);
+    }
+    .section-button {
+      display: inline-flex;
+      min-height: 40px;
+      align-items: center;
+      justify-content: center;
+      gap: 9px;
+      padding: 0 15px;
+      border: 1px solid rgb(255 255 255 / 28%);
+      border-radius: 3px;
+      background: rgb(19 7 34 / 78%);
+      color: var(--white);
+      font-family: var(--mono);
+      font-size: 10px;
+      letter-spacing: .04em;
+      cursor: pointer;
+      backdrop-filter: blur(8px);
+      transition: border-color .2s ease, background .2s ease, transform .2s ease;
+    }
+    .section-button:hover {
+      transform: translateY(-2px);
+      border-color: var(--cyan);
+      background: rgb(30 11 49 / 94%);
+    }
+    .section-button span { color: var(--pink); }
+    .hero-foot {
+      position: absolute;
+      right: clamp(20px, 5vw, 64px);
+      bottom: 19px;
+      left: clamp(20px, 5vw, 64px);
+      z-index: 1;
+      display: flex;
+      justify-content: space-between;
+    }
+    .hero-foot span:last-child { color: var(--cyan); }
+    .info-window {
+      width: min(460px, calc(100% - 32px));
+      max-height: min(520px, calc(100dvh - 40px));
+      padding: 0;
+      overflow: auto;
+      border: 1px solid rgb(255 60 158 / 72%);
+      border-radius: 4px;
+      background: linear-gradient(145deg, rgb(29 11 47 / 98%), rgb(13 6 25 / 98%));
+      color: var(--white);
+      box-shadow: 0 0 50px rgb(255 60 158 / 23%), 0 18px 80px rgb(0 0 0 / 55%);
+    }
+    .info-window::backdrop { background: rgb(8 3 17 / 58%); backdrop-filter: blur(4px); }
+    .window-bar {
+      position: sticky;
+      top: 0;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      padding: 13px 17px;
+      border-bottom: 1px solid rgb(190 119 255 / 24%);
+      background: #1b0b2d;
+    }
+    .window-title {
+      margin: 0;
+      color: var(--cyan);
+      font-family: var(--mono);
+      font-size: 11px;
+      font-weight: 500;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+    }
+    .window-close {
+      display: grid;
+      width: 29px;
+      height: 29px;
+      place-items: center;
+      border: 1px solid rgb(255 255 255 / 25%);
+      border-radius: 2px;
+      background: transparent;
+      color: var(--white);
+      font-size: 17px;
+      cursor: pointer;
+    }
+    .window-close:hover { border-color: var(--pink); color: var(--pink); }
+    .window-content { padding: 20px; color: var(--muted); font-size: 14px; }
+    .window-content h3 { margin: 0 0 9px; color: var(--white); font-size: 21px; letter-spacing: -.04em; }
+    .window-content p { margin: 0 0 14px; }
+    .window-content a { color: #ff8bc4; text-underline-offset: 4px; }
+    .window-content a:hover { color: var(--cyan); }
+    .window-content[hidden] { display: none; }
+    .tech-list { display: flex; flex-wrap: wrap; gap: 8px; }
+    .tech-list span {
+      padding: 6px 10px;
+      border: 1px solid rgb(180 92 255 / 32%);
+      background: rgb(180 92 255 / 9%);
+      color: #eadcf5;
+      font-family: var(--mono);
+      font-size: 11px;
+    }
+    .project-entry + .project-entry { margin-top: 19px; padding-top: 16px; border-top: 1px solid rgb(190 119 255 / 18%); }
+    .project-entry h3 { font-size: 17px; }
+    .project-entry p { margin-bottom: 8px; }
+    .boot-screen {
+      position: fixed;
+      z-index: 10;
+      inset: 0;
+      display: grid;
+      place-items: center;
+      overflow: hidden;
+      padding: 24px;
+      background: radial-gradient(ellipse at 50% 110%, rgb(255 43 151 / 25%), transparent 48%),
+        radial-gradient(ellipse at 50% 20%, #25103c 0%, #10051f 68%);
+      opacity: 1;
+      transition: opacity .55s ease, visibility .55s ease;
+    }
+    .boot-screen::before {
+      position: absolute;
+      inset: 0;
+      background: repeating-linear-gradient(transparent 0 3px, rgb(5 0 13 / 19%) 3px 4px);
+      content: "";
+      pointer-events: none;
+    }
+    .boot-sun {
+      position: absolute;
+      right: -8vw;
+      bottom: -22vw;
+      width: min(68vw, 620px);
+      aspect-ratio: 1;
+      border-radius: 50%;
+      background: repeating-linear-gradient(0deg, transparent 0 16px, rgb(36 7 41 / 75%) 16px 21px),
+        linear-gradient(180deg, #ffe1a0 0%, #ff719e 48%, #ff2b96 100%);
+      box-shadow: 0 0 90px rgb(255 43 151 / 28%);
+      opacity: .48;
+      pointer-events: none;
+    }
+    .boot-shell {
+      position: relative;
+      width: min(680px, 100%);
+      border: 1px solid rgb(87 236 255 / 48%);
+      background: rgb(12 5 25 / 90%);
+      box-shadow: 0 0 36px rgb(87 236 255 / 10%), 0 0 90px rgb(255 43 151 / 10%);
+      backdrop-filter: blur(8px);
+    }
+    .boot-titlebar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      padding: 12px 16px;
+      border-bottom: 1px solid rgb(87 236 255 / 26%);
+      background: rgb(32 12 49 / 85%);
+      color: var(--cyan);
+      font-family: var(--mono);
+      font-size: 10px;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+    }
+    .boot-leds { display: flex; gap: 6px; }
+    .boot-leds i { width: 7px; height: 7px; border-radius: 50%; background: var(--pink); box-shadow: 0 0 8px var(--pink); }
+    .boot-content { padding: clamp(20px, 5vw, 34px); }
+    .boot-wordmark {
+      margin: 0;
+      color: var(--white);
+      font-family: var(--mono);
+      font-size: clamp(32px, 8vw, 52px);
+      font-weight: 500;
+      letter-spacing: .04em;
+      line-height: 1;
+      text-shadow: 0 0 22px rgb(255 60 158 / 48%);
+    }
+    .boot-wordmark span { color: var(--pink); }
+    .boot-tagline {
+      margin: 10px 0 20px;
+      color: #c5aecf;
+      font-family: var(--mono);
+      font-size: 10px;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+    }
+    .boot-intro p {
+      max-width: 520px;
+      margin: 0 0 17px;
+      color: #d8c8e3;
+      font-size: 14px;
+    }
+    .boot-sequence {
+      display: grid;
+      grid-template-columns: repeat(5, minmax(0, 1fr));
+      gap: 7px;
+      margin: 20px 0 24px;
+      padding: 0;
+      list-style: none;
+    }
+    .boot-sequence li {
+      min-height: 52px;
+      padding: 8px 7px;
+      border: 1px solid rgb(180 92 255 / 27%);
+      background: rgb(180 92 255 / 7%);
+      color: #c5aecf;
+      font-family: var(--mono);
+      font-size: 9px;
+      line-height: 1.5;
+    }
+    .boot-sequence li span { display: block; color: var(--cyan); }
+    .boot-start, .boot-skip {
+      padding: 10px 14px;
+      border: 1px solid var(--pink);
+      border-radius: 2px;
+      background: linear-gradient(110deg, rgb(255 60 158 / 21%), rgb(180 92 255 / 18%));
+      color: var(--white);
+      font-family: var(--mono);
+      font-size: 10px;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+      cursor: pointer;
+      box-shadow: 0 0 15px rgb(255 60 158 / 12%);
+    }
+    .boot-start:hover, .boot-start:focus-visible, .boot-skip:hover, .boot-skip:focus-visible {
+      border-color: var(--cyan);
+      color: var(--cyan);
+    }
+    .boot-start:disabled { cursor: wait; opacity: .7; }
+    .boot-error {
+      margin: 12px 0 0 !important;
+      color: #ff8bc4 !important;
+      font-family: var(--mono);
+      font-size: 11px !important;
+    }
+    .boot-fallback {
+      margin-left: 10px;
+      padding: 0;
+      border: 0;
+      background: transparent;
+      color: var(--cyan);
+      font-family: var(--mono);
+      font-size: 10px;
+      text-decoration: underline;
+      text-underline-offset: 3px;
+      cursor: pointer;
+    }
+    .boot-fallback[hidden] { display: none; }
+    .boot-intro[hidden], .boot-running[hidden] { display: none; }
+    .boot-log {
+      min-height: 146px;
+      margin: 0;
+      overflow: hidden;
+      color: #d8c8e3;
+      font-family: var(--mono);
+      font-size: 11px;
+      line-height: 1.9;
+      list-style: none;
+    }
+    .boot-log li::before { margin-right: 9px; color: var(--cyan); content: ">"; }
+    .boot-log li:last-child::after {
+      display: inline-block;
+      width: 7px;
+      height: 12px;
+      margin-left: 5px;
+      background: var(--pink);
+      content: "";
+      vertical-align: -2px;
+      animation: boot-cursor .85s steps(2, start) infinite;
+    }
+    @keyframes boot-cursor { to { visibility: hidden; } }
+    .boot-progress-meta {
+      display: flex;
+      justify-content: space-between;
+      margin-top: 21px;
+      color: var(--cyan);
+      font-family: var(--mono);
+      font-size: 10px;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+    }
+    .boot-status-group { display: flex; min-width: 0; align-items: center; gap: 8px; }
+    .boot-loader {
+      color: var(--pink);
+      white-space: pre;
+      text-shadow: 0 0 9px rgb(255 60 158 / 60%);
+    }
+    .boot-loader[hidden] { display: none; }
+    .boot-progress {
+      height: 8px;
+      margin-top: 9px;
+      padding: 1px;
+      border: 1px solid rgb(87 236 255 / 54%);
+      background: rgb(87 236 255 / 7%);
+    }
+    .boot-progress-fill {
+      width: 0;
+      height: 100%;
+      background: linear-gradient(90deg, var(--violet), var(--pink), #ffc082);
+      box-shadow: 0 0 13px rgb(255 60 158 / 65%);
+      transition: width .12s linear;
+    }
+    .boot-bottom {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      margin-top: 19px;
+      color: #9b85aa;
+      font-family: var(--mono);
+      font-size: 9px;
+      letter-spacing: .08em;
+    }
+    .boot-bottom-actions { display: flex; gap: 8px; }
+    .boot-skip {
+      padding: 7px 10px;
+      border: 1px solid rgb(255 255 255 / 27%);
+      border-radius: 2px;
+      background: transparent;
+      color: var(--white);
+      font-family: var(--mono);
+      font-size: 9px;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+      cursor: pointer;
+    }
+    .boot-skip:hover, .boot-skip:focus-visible {
+      border-color: var(--pink);
+      color: #ff8bc4;
+    }
+    .boot-screen.is-exiting { visibility: hidden; opacity: 0; pointer-events: none; }
+    @media (max-width: 520px) {
+      .topbar { padding: 17px 16px; }
+      .top-status { max-width: 145px; font-size: 8px; text-align: right; }
+      .identity { top: 12%; left: 20px; }
+      .identity h1 { font-size: 31px; }
+      .section-nav { bottom: 62px; gap: 7px; }
+      .section-button { min-height: 36px; padding-inline: 10px; font-size: 9px; }
+      .hero-foot { right: 15px; bottom: 14px; left: 15px; font-size: 8px; }
+      .boot-log { min-height: 132px; font-size: 10px; }
+      .boot-tagline { font-size: 9px; }
+      .boot-bottom { align-items: flex-start; flex-wrap: wrap; }
+      .boot-bottom-actions { width: 100%; justify-content: flex-end; }
+      .boot-sequence { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+      .boot-sequence li { min-height: 44px; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after { transition-duration: .01ms !important; animation-duration: .01ms !important; animation-iteration-count: 1 !important; }
+    }
   </style>
 </head>
 <body>
-
-<nav>
-  <a href="#about">About me</a>
-  <a href="#skills">Skills</a>
-  <a href="#projects">Projects</a>
-  <a href="#contact">Contacto</a>
-</nav>
-
-<header>
-  <h1>Leandro Orellana</h1>
-  <p>Software Developer · Mobile · AI · Backend</p>
-</header>
-
-<section id="about">
-  <h2>About me</h2>
-  <p>
-  Spanish developer focused on software development, mobile applications, and data-driven systems.
-Experience working with Kotlin, Flutter, Python, and artificial intelligence tools.
-Interest in building scalable applications and efficient systems.
-  </p>
-</section>
-
-<section id="skills">
-  <h2>Tecnologías</h2>
-  <div class="tech">
-    <span>Kotlin</span>
-    <span>Flutter</span>
-    <span>Python</span>
-    <span>Java</span>
-    <span>C#</span>
-    <span>Docker</span>
-    <span>Git</span>
-    <span>Android</span>
-    <span>Machine Learning</span>
-  </div>
-</section>
-
-<section id="projects">
-  <h2>Proyectos</h2>
-
-  <div class="grid">
-
-    <div class="card project">
-      <h3>Specteon</h3>
-      <p>Mobile device remote control client application developed in Kotlin. A complementary project to be managed by Dominion.</p>
-      <a href="https://github.com/leandroom29/Specteon">See repository</a>
+  <section class="boot-screen" aria-label="Inicio de LeanOS">
+    <div class="boot-sun" aria-hidden="true"></div>
+    <div class="boot-shell">
+      <div class="boot-titlebar">
+        <span>LeanOS // Synthwave 84</span>
+        <span class="boot-leds" aria-hidden="true"><i></i><i></i><i></i></span>
+      </div>
+      <div class="boot-content">
+        <h1 class="boot-wordmark">LEAN<span>OS</span></h1>
+        <p class="boot-tagline">Personal system · build 1984.10.06</p>
+        <div class="boot-intro">
+          <p>El sistema está apagado. Inicia LeanOS para escuchar y ver la secuencia de arranque del equipo.</p>
+          <ul class="boot-sequence" aria-label="Secuencia de arranque">
+            <li><span>00:00</span>POWER ON</li>
+            <li><span>00:02</span>VENTILADORES</li>
+            <li><span>00:06</span>DISQUETERA</li>
+            <li><span>00:08</span>POST / BEEP</li>
+            <li><span>00:09</span>DISCO DURO</li>
+          </ul>
+          <button class="boot-start" type="button">▶ Arrancar LeanOS</button>
+          <p class="boot-error" role="alert" hidden></p>
+          <button class="boot-fallback" type="button" hidden>Continuar sin audio</button>
+        </div>
+        <div class="boot-running" hidden>
+          <ul class="boot-log" aria-live="polite" aria-label="Mensajes de inicio del sistema"></ul>
+          <div class="boot-progress-meta">
+            <span class="boot-status-group">
+              <span id="boot-status" aria-live="polite">Preparando encendido</span>
+              <span class="boot-loader" aria-hidden="true" hidden>_/\_/\_</span>
+            </span>
+            <span id="boot-percentage">00%</span>
+          </div>
+          <div class="boot-progress" role="progressbar" aria-label="Carga de LeanOS" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
+            <div class="boot-progress-fill"></div>
+          </div>
+          <div class="boot-bottom">
+            <span id="boot-stage">MEM 640K · POWER OFF</span>
+            <div class="boot-bottom-actions">
+              <button class="boot-skip" type="button">Omitir arranque ↵</button>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
-
-    <div class="card project">
-      <h3>Dominion</h3>
-      <p>Remote control server application for mobile devices developed using Flutter. A side project for controlling Specteon. Not available yet.</p>
-      <a href="#">See repository</a>
+    <audio class="boot-audio" preload="none" src="./audio/leanos_start.mp3"></audio>
+  </section>
+  <header class="hero" id="inicio">
+    <canvas class="scene" aria-hidden="true"></canvas>
+    <div class="topbar">
+      <a class="brand" href="#inicio" aria-label="Leandro Orellana, inicio">LO<span>_</span>DEV</a>
+      <div class="top-status">Portfolio interactivo <span>●</span> Sistema en línea</div>
     </div>
-  </div>
-</section>
+    <div class="identity">
+      <p>Mobile · Backend · IA</p>
+      <h1>Leandro<br /><span>Orellana</span></h1>
+    </div>
+    <nav class="section-nav" aria-label="Secciones del portfolio">
+      <button class="section-button" type="button" data-panel="about"><span>01</span> Sobre mí</button>
+      <button class="section-button" type="button" data-panel="tech"><span>02</span> Lenguajes</button>
+      <button class="section-button" type="button" data-panel="projects"><span>03</span> Proyectos</button>
+      <button class="section-button" type="button" data-panel="contact"><span>04</span> Contacto</button>
+    </nav>
+    <div class="hero-foot" aria-hidden="true">
+      <span>Leandro Orellana · Software developer</span>
+      <span>Press a section to explore</span>
+    </div>
+  </header>
 
-<section id="contact">
-  <h2>Contact</h2>
-  <p>Email: lorellana.dev@gmail.com</p>
-  <p>GitHub: https://github.com/leandroom29</p>
-  <p>LinkedIn: https://www.linkedin.com/in/leandro-orellana-martos-2998a1331/</p>
-</section>
+  <dialog class="info-window" aria-labelledby="window-title">
+    <div class="window-bar">
+      <h2 class="window-title" id="window-title">Información</h2>
+      <button class="window-close" type="button" aria-label="Cerrar ventana">×</button>
+    </div>
+    <div class="window-content" data-content="about">
+      <h3>Hola, soy Leandro.</h3>
+      <p>Desarrollador español centrado en aplicaciones móviles, sistemas backend y soluciones basadas en datos. Me interesa construir productos escalables que conviertan ideas complejas en experiencias sencillas.</p>
+    </div>
+    <div class="window-content" data-content="tech" hidden>
+      <h3>Mis herramientas</h3>
+      <p>Tecnologías con las que desarrollo:</p>
+      <div class="tech-list" aria-label="Lenguajes y tecnologías">
+        <span>Kotlin</span><span>Flutter</span><span>Python</span><span>Java</span>
+        <span>C#</span><span>Docker</span><span>Git</span><span>Android</span><span>Machine Learning</span>
+      </div>
+    </div>
+    <div class="window-content" data-content="projects" hidden>
+      <div class="project-entry">
+        <h3>Specteon <span class="section-kicker">· Kotlin</span></h3>
+        <p>Cliente móvil para el control remoto de dispositivos; proyecto complementario a Dominion.</p>
+        <a href="https://github.com/leandroom29/Specteon" target="_blank" rel="noreferrer">Ver repositorio ↗</a>
+      </div>
+      <div class="project-entry">
+        <h3>Dominion <span class="section-kicker">· Flutter</span></h3>
+        <p>Servidor de control remoto para dispositivos móviles. En desarrollo.</p>
+      </div>
+    </div>
+    <div class="window-content" data-content="contact" hidden>
+      <h3>Conectemos.</h3>
+      <p>Estoy abierto a conversar sobre proyectos, tecnología y nuevas oportunidades.</p>
+      <p><a href="mailto:lorellana.dev@gmail.com">lorellana.dev@gmail.com</a></p>
+      <p><a href="https://github.com/leandroom29" target="_blank" rel="noreferrer">GitHub ↗</a> · <a href="https://www.linkedin.com/in/leandro-orellana-martos-2998a1331/" target="_blank" rel="noreferrer">LinkedIn ↗</a></p>
+    </div>
+  </dialog>
 
-<footer>
-  <p>© 2026 Leandro Orellana</p>
-</footer>
+  <script>
+    (() => {
+      const canvas = document.querySelector(".scene");
+      const context = canvas.getContext("2d");
+      const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
+      const infoWindow = document.querySelector(".info-window");
+      const windowTitle = document.querySelector("#window-title");
+      const sectionTitles = {
+        about: "01 / Sobre mí",
+        tech: "02 / Lenguajes y tecnologías",
+        projects: "03 / Proyectos",
+        contact: "04 / Contacto"
+      };
+      const bootScreen = document.querySelector(".boot-screen");
+      const bootIntro = document.querySelector(".boot-intro");
+      const bootRunning = document.querySelector(".boot-running");
+      const bootLog = document.querySelector(".boot-log");
+      const bootProgress = document.querySelector(".boot-progress");
+      const bootProgressFill = document.querySelector(".boot-progress-fill");
+      const bootPercentage = document.querySelector("#boot-percentage");
+      const bootStatus = document.querySelector("#boot-status");
+      const bootLoader = document.querySelector(".boot-loader");
+      const bootStage = document.querySelector("#boot-stage");
+      const bootAudio = document.querySelector(".boot-audio");
+      const bootStartButton = document.querySelector(".boot-start");
+      const bootError = document.querySelector(".boot-error");
+      const bootFallback = document.querySelector(".boot-fallback");
+      const hero = document.querySelector(".hero");
+      const bootPhases = [
+        { start: 0, end: 2, title: "ENCENDIDO FÍSICO", status: "Cerrando circuito de alimentación", stage: "POWER ON · 00:00", message: "Interruptor POWER activado · autodiagnóstico iniciado", progressStart: 0, progressEnd: 18 },
+        { start: 2, end: 6, title: "VENTILADORES Y DISCO DURO", status: "Acelerando ventiladores · iniciando HDD", stage: "VENTILADORES + HDD · 00:02", message: "Fuente estable · motor del disco girando", progressStart: 18, progressEnd: 53 },
+        { start: 6, end: 8, title: "LECTURA DE DISQUETERA", status: "Comprobando unidad A:", stage: "FLOPPY CHECK · 00:06", message: "BIOS leyendo unidad de disquete", progressStart: 53, progressEnd: 53, waiting: true },
+        { start: 8, end: 9, title: "POST COMPLETADO", status: "Hardware verificado · POST OK", stage: "POST OK · 00:08", message: "Comprobación terminada correctamente · beep", progressStart: 53, progressEnd: 66 },
+        { start: 9, end: 11, title: "LECTURA DEL DISCO DURO", status: "Leyendo sector de arranque", stage: "BOOT SECTOR · 00:09", message: "Cabezal HDD leyendo LeanOS.SYS", progressStart: 66, progressEnd: 95 }
+      ];
+      let width = 0;
+      let height = 0;
+      let pixelRatio = 1;
+      let stars = [];
+      let animationFrame = 0;
+      let lastFrameTime = 0;
+      let bootFinished = false;
+      let bootStarted = false;
+      let bootMessageIndex = -1;
+      let bootAnimationFrame = 0;
+      const bootLoaderFrames = ["_/\\_/\\_", "/\\_/\\_/", "\\_/\\_/_", "/\\_/\\_"];
+      hero.inert = true;
 
+      function addBootMessage(message) {
+        const line = document.createElement("li");
+        line.textContent = message;
+        bootLog.append(line);
+      }
+
+      function updateBootProgress() {
+        if (!bootStarted || bootFinished) return;
+        const elapsed = bootAudio.currentTime;
+        const phaseIndex = bootPhases.findIndex((phase) => elapsed < phase.end);
+        const currentPhase = bootPhases[phaseIndex === -1 ? bootPhases.length - 1 : phaseIndex];
+
+        const currentPhaseIndex = phaseIndex === -1 ? bootPhases.length - 1 : phaseIndex;
+        if (currentPhaseIndex !== bootMessageIndex) {
+          bootMessageIndex = currentPhaseIndex;
+          addBootMessage(currentPhase.message);
+        }
+
+        const phaseProgress = currentPhase.waiting
+          ? 0
+          : Math.max(0, Math.min(1, (elapsed - currentPhase.start) / (currentPhase.end - currentPhase.start)));
+        const progress = elapsed >= 11 && !bootAudio.ended
+          ? 95
+          : Math.round(currentPhase.progressStart
+          + (currentPhase.progressEnd - currentPhase.progressStart) * phaseProgress);
+        bootProgressFill.style.width = `${progress}%`;
+        bootProgress.setAttribute("aria-valuenow", String(progress));
+        bootPercentage.textContent = `${String(progress).padStart(2, "0")}%`;
+        const waitingForDisk = elapsed >= 11 && !bootAudio.ended;
+        bootStatus.textContent = waitingForDisk ? "Esperando fin de lectura del disco" : currentPhase.status;
+        bootStage.textContent = `${currentPhase.title} · ${currentPhase.stage}`;
+        bootLoader.hidden = !currentPhase.waiting && !waitingForDisk;
+        if (currentPhase.waiting || waitingForDisk) {
+          const frame = Math.floor(elapsed * 9) % bootLoaderFrames.length;
+          bootLoader.textContent = bootLoaderFrames[frame];
+        }
+        bootAnimationFrame = window.requestAnimationFrame(updateBootProgress);
+      }
+
+      function showBootAudioError(error) {
+        if (bootFinished || (!bootStarted && !bootError.hidden)) return;
+        bootStarted = false;
+        window.cancelAnimationFrame(bootAnimationFrame);
+        bootAudio.pause();
+        bootRunning.hidden = true;
+        bootIntro.hidden = false;
+        bootStartButton.disabled = false;
+        bootStartButton.textContent = "Reintentar arranque";
+        bootError.textContent = `No se pudo reproducir audio/leanos_start.mp3: ${error.message || "formato de audio no compatible"}`;
+        bootError.hidden = false;
+        bootFallback.hidden = false;
+        console.error("No se pudo iniciar el audio de LeanOS.", error);
+      }
+
+      async function startBoot() {
+        if (bootStarted || bootFinished) return;
+        bootStartButton.disabled = true;
+        bootError.hidden = true;
+        bootFallback.hidden = true;
+        bootError.textContent = "";
+        try {
+          bootAudio.currentTime = 0;
+          await bootAudio.play();
+          bootStarted = true;
+          bootIntro.hidden = true;
+          bootRunning.hidden = false;
+          bootStartButton.textContent = "▶ Arrancar LeanOS";
+          updateBootProgress();
+        } catch (error) {
+          showBootAudioError(error);
+        }
+      }
+
+      function continueWithoutAudio() {
+        bootError.hidden = true;
+        bootFallback.hidden = true;
+        bootStarted = true;
+        bootIntro.hidden = true;
+        bootRunning.hidden = false;
+        finishBoot(true);
+      }
+
+      function finishBoot(skipped = false) {
+        if (bootFinished) return;
+        bootFinished = true;
+        window.cancelAnimationFrame(bootAnimationFrame);
+        if (skipped) {
+          bootAudio.pause();
+          if (!bootAudio.error) bootAudio.currentTime = 0;
+          addBootMessage("Arranque omitido manualmente · abriendo escritorio");
+        } else {
+          addBootMessage("LeanOS.SYS cargado · escritorio listo");
+        }
+        bootProgressFill.style.width = "100%";
+        bootProgress.setAttribute("aria-valuenow", "100");
+        bootPercentage.textContent = "100%";
+        bootStatus.textContent = skipped ? "Arranque omitido" : "Sistema listo";
+        bootStage.textContent = "LEANOS READY";
+        bootLoader.hidden = true;
+        window.setTimeout(() => {
+          bootScreen.classList.add("is-exiting");
+          hero.inert = false;
+        }, 220);
+      }
+
+      bootStartButton.addEventListener("click", startBoot);
+      bootAudio.addEventListener("ended", () => finishBoot());
+      bootAudio.addEventListener("error", () => {
+        showBootAudioError(bootAudio.error || new Error("No se pudo cargar el archivo de audio"));
+      });
+      bootFallback.addEventListener("click", continueWithoutAudio);
+      document.querySelector(".boot-skip").addEventListener("click", () => finishBoot(true));
+      document.addEventListener("keydown", (event) => {
+        if (!bootStarted && !bootFinished && event.key === "Enter") {
+          event.preventDefault();
+          startBoot();
+        } else if (bootStarted && !bootFinished && event.key === "Escape") {
+          event.preventDefault();
+          finishBoot(true);
+        }
+      });
+
+      document.querySelectorAll(".section-button").forEach((button) => {
+        button.addEventListener("click", () => {
+          const section = button.dataset.panel;
+          document.querySelectorAll(".window-content").forEach((content) => {
+            content.hidden = content.dataset.content !== section;
+          });
+          windowTitle.textContent = sectionTitles[section];
+          infoWindow.showModal();
+        });
+      });
+      document.querySelector(".window-close").addEventListener("click", () => infoWindow.close());
+      infoWindow.addEventListener("click", (event) => {
+        if (event.target === infoWindow) infoWindow.close();
+      });
+
+      function resize() {
+        const bounds = canvas.getBoundingClientRect();
+        width = bounds.width;
+        height = bounds.height;
+        pixelRatio = Math.min(window.devicePixelRatio || 1, 2);
+        canvas.width = Math.round(width * pixelRatio);
+        canvas.height = Math.round(height * pixelRatio);
+        context.setTransform(pixelRatio, 0, 0, pixelRatio, 0, 0);
+        let seed = 121177;
+        const random = () => {
+          seed = (seed * 16807) % 2147483647;
+          return (seed - 1) / 2147483646;
+        };
+        stars = Array.from({ length: Math.round(width * height / 4700) }, () => ({
+          x: random() * width,
+          y: random() * height * 0.48,
+          radius: random() * 1.25 + 0.35,
+          alpha: random() * 0.58 + 0.18
+        }));
+        draw(0);
+      }
+
+      function drawSkyline(horizon) {
+        const baseline = horizon - height * 0.045;
+        const buildings = [
+          [0.00, .08, .10], [.07, .035, .17], [.10, .06, .09], [.16, .035, .24],
+          [.20, .055, .18], [.25, .035, .31], [.29, .045, .48], [.33, .035, .27],
+          [.37, .06, .40], [.43, .035, .34], [.47, .055, .58], [.53, .035, .72],
+          [.57, .045, .43], [.62, .06, .54], [.68, .035, .35], [.72, .05, .47],
+          [.78, .035, .27], [.82, .06, .39], [.89, .035, .20], [.93, .07, .15]
+        ];
+        context.fillStyle = "#170626";
+        context.beginPath();
+        context.moveTo(0, baseline);
+        for (const [position, buildingWidth, buildingHeight] of buildings) {
+          const x = position * width;
+          const w = buildingWidth * width;
+          const top = baseline - buildingHeight * height * 0.16;
+          context.lineTo(x, baseline);
+          context.lineTo(x, top + 7);
+          context.lineTo(x + w * 0.18, top + 7);
+          context.lineTo(x + w * 0.18, top);
+          context.lineTo(x + w * 0.34, top);
+          context.lineTo(x + w * 0.34, top + 7);
+          context.lineTo(x + w * 0.78, top + 7);
+          context.lineTo(x + w * 0.78, baseline);
+        }
+        context.lineTo(width, baseline);
+        context.closePath();
+        context.fill();
+
+        context.strokeStyle = "rgba(255, 60, 158, .58)";
+        context.lineWidth = 1;
+        context.beginPath();
+        context.moveTo(0, baseline + 2);
+        context.lineTo(width, baseline + 2);
+        context.stroke();
+      }
+
+      function draw(time) {
+        if (!width || !height) return;
+        const horizon = height * 0.66;
+        const vanishingX = width * 0.5;
+        const groundDepth = height - horizon;
+        const travel = (time / 1000) * 0.78;
+        const phase = travel % 1;
+        const rowCount = 26;
+        context.clearRect(0, 0, width, height);
+
+        const sky = context.createLinearGradient(0, 0, 0, height);
+        sky.addColorStop(0, "#10051f");
+        sky.addColorStop(0.48, "#28103c");
+        sky.addColorStop(0.55, "#ae145e");
+        sky.addColorStop(0.64, "#321044");
+        sky.addColorStop(1, "#10051f");
+        context.fillStyle = sky;
+        context.fillRect(0, 0, width, height);
+
+        for (const star of stars) {
+          context.globalAlpha = star.alpha;
+          context.fillStyle = "#ff67d2";
+          context.beginPath();
+          context.arc(star.x, star.y, star.radius, 0, Math.PI * 2);
+          context.fill();
+        }
+        context.globalAlpha = 1;
+
+        const sunRadius = Math.min(width * 0.205, height * 0.235, 180);
+        const sunX = vanishingX;
+        const sunY = height * 0.355;
+        const sun = context.createLinearGradient(sunX, sunY - sunRadius, sunX, sunY + sunRadius);
+        sun.addColorStop(0, "#ffe5a3");
+        sun.addColorStop(0.52, "#ff9a9f");
+        sun.addColorStop(1, "#ff4c91");
+        context.save();
+        context.shadowColor = "rgba(255, 47, 139, .78)";
+        context.shadowBlur = 38;
+        context.fillStyle = sun;
+        context.beginPath();
+        context.arc(sunX, sunY, sunRadius, 0, Math.PI * 2);
+        context.fill();
+        context.restore();
+        context.save();
+        context.beginPath();
+        context.arc(sunX, sunY, sunRadius - 1, 0, Math.PI * 2);
+        context.clip();
+        context.fillStyle = "#bd1b62";
+        const stripeStart = sunY + sunRadius * 0.24;
+        for (let stripe = 0; stripe < 7; stripe++) {
+          const stripeY = stripeStart + stripe * (sunRadius * 0.105);
+          context.fillRect(sunX - sunRadius, stripeY, sunRadius * 2, Math.max(2, sunRadius * 0.027));
+        }
+        context.restore();
+
+        drawSkyline(horizon);
+
+        const roadHalfWidth = Math.min(width * 0.24, height * 0.34);
+        const roadLeftAtBottom = vanishingX - roadHalfWidth;
+        const roadRightAtBottom = vanishingX + roadHalfWidth;
+        const road = context.createLinearGradient(0, horizon, 0, height);
+        road.addColorStop(0, "rgba(26, 8, 40, .16)");
+        road.addColorStop(1, "rgba(9, 5, 23, .76)");
+        context.fillStyle = road;
+        context.beginPath();
+        context.moveTo(vanishingX, horizon);
+        context.lineTo(roadRightAtBottom, height);
+        context.lineTo(roadLeftAtBottom, height);
+        context.closePath();
+        context.fill();
+
+        const projectDepth = (unit) => Math.min(1, (unit / rowCount) ** 1.72);
+        context.lineWidth = 1;
+        for (let index = 0; index <= rowCount; index++) {
+          const depth = projectDepth(index + phase);
+          const y = horizon + groundDepth * depth;
+          const glow = Math.min(1, 0.38 + depth * 0.65);
+          context.strokeStyle = `rgba(255, 48, 168, ${glow})`;
+          context.shadowColor = "rgba(255, 40, 172, .55)";
+          context.shadowBlur = depth > 0.65 ? 7 : 2;
+          context.beginPath();
+          context.moveTo(0, y);
+          context.lineTo(width, y);
+          context.stroke();
+        }
+        context.shadowBlur = 0;
+
+        const verticalLines = 30;
+        for (let index = -verticalLines; index <= verticalLines; index++) {
+          const bottomX = vanishingX + (index / verticalLines) * width * 0.78;
+          const isRoadEdge = Math.abs(bottomX - roadLeftAtBottom) < 2 || Math.abs(bottomX - roadRightAtBottom) < 2;
+          context.strokeStyle = isRoadEdge ? "rgba(87, 236, 255, .9)" : "rgba(113, 51, 191, .75)";
+          context.lineWidth = isRoadEdge ? 1.7 : 0.8;
+          context.beginPath();
+          context.moveTo(vanishingX, horizon);
+          context.lineTo(bottomX, height);
+          context.stroke();
+        }
+
+        context.strokeStyle = "rgba(87, 236, 255, .9)";
+        context.lineWidth = 1.8;
+        context.shadowColor = "rgba(87, 236, 255, .8)";
+        context.shadowBlur = 10;
+        context.beginPath();
+        context.moveTo(vanishingX, horizon);
+        context.lineTo(roadLeftAtBottom, height);
+        context.moveTo(vanishingX, horizon);
+        context.lineTo(roadRightAtBottom, height);
+        context.stroke();
+
+        context.fillStyle = "rgba(255, 246, 211, .95)";
+        context.shadowColor = "rgba(255, 246, 211, .9)";
+        context.shadowBlur = 13;
+        for (let index = 0; index < rowCount; index++) {
+          const start = index + phase;
+          const end = Math.min(rowCount, start + 0.62);
+          const startDepth = projectDepth(start);
+          const endDepth = projectDepth(end);
+          if (startDepth >= 0.98) continue;
+          const startY = horizon + groundDepth * startDepth;
+          const endY = horizon + groundDepth * endDepth;
+          const startWidth = Math.max(1, 1.5 + 3 * startDepth);
+          const endWidth = Math.max(1, 1.5 + 3 * endDepth);
+          context.beginPath();
+          context.moveTo(vanishingX - startWidth / 2, startY);
+          context.lineTo(vanishingX - endWidth / 2, endY);
+          context.lineTo(vanishingX + endWidth / 2, endY);
+          context.lineTo(vanishingX + startWidth / 2, startY);
+          context.closePath();
+          context.fill();
+        }
+        context.shadowBlur = 0;
+
+        if (!reducedMotion.matches) {
+          animationFrame = window.requestAnimationFrame(draw);
+        }
+      }
+
+      function startAnimation() {
+        window.cancelAnimationFrame(animationFrame);
+        if (reducedMotion.matches) {
+          draw(0);
+          return;
+        }
+        lastFrameTime = performance.now();
+        animationFrame = window.requestAnimationFrame((time) => {
+          const elapsed = time - lastFrameTime;
+          if (elapsed >= 16) {
+            lastFrameTime = time;
+            draw(time);
+          } else {
+            animationFrame = window.requestAnimationFrame(draw);
+          }
+        });
+      }
+
+      window.addEventListener("resize", resize);
+      reducedMotion.addEventListener("change", startAnimation);
+      resize();
+      startAnimation();
+    })();
+  </script>
 </body>
 </html>
