@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#10051f" />
+  <meta name="description" content="Leandro Orellana's software development portfolio, focused on mobile apps, backend systems, and artificial intelligence." />
+  <title>Leandro Orellana &#8212; Software Developer</title>
+  <link rel="stylesheet" href="./styles.css" />
+</head>
+<body>
+<header class="hero" id="home">
+    <canvas class="scene" aria-hidden="true"></canvas>
+    <div class="topbar">
+      <a class="brand" href="#home" aria-label="Kalos Systems desktop" data-i18n-aria="desktop.label">KALOS<span>_</span>OS</a>
+          <div class="top-status"><span data-i18n="desktop.status">Desktop</span> <span>●</span> <span data-i18n="desktop.online">System online</span></div>
+    </div>
+    <div class="desktop-area" role="main" aria-label="Kalos Systems desktop" data-i18n-aria="desktop.aria">
+      <div class="desktop-icons" aria-label="Desktop files and folders" data-i18n-aria="desktop.fileArea">
+        <button class="desktop-icon" type="button" data-open="about">
+          <span class="desktop-icon-art" aria-hidden="true">TXT</span>
+          <span class="desktop-icon-label" data-i18n="desktop.aboutFile">About Me.txt</span>
+        </button>
+        <button class="desktop-icon" type="button" data-open="tech">
+          <span class="desktop-icon-art" aria-hidden="true">TXT</span>
+          <span class="desktop-icon-label" data-i18n="desktop.techFile">Technologies.txt</span>
+        </button>
+        <button class="desktop-icon" type="button" data-open="contact">
+          <span class="desktop-icon-art" aria-hidden="true">TXT</span>
+          <span class="desktop-icon-label" data-i18n="desktop.contactFile">Contact.txt</span>
+        </button>
+        <button class="desktop-icon" type="button" data-open="projects">
+          <span class="desktop-icon-art" aria-hidden="true">▰</span>
+          <span class="desktop-icon-label" data-i18n="desktop.projects">Projects</span>
+        </button>
+      </div>
+      <div class="desktop-windows">
+        <section class="desktop-window" data-window="about" role="dialog" aria-modal="false" aria-labelledby="about-title" hidden>
+          <div class="window-titlebar">
+            <h2 class="window-title" id="about-title" data-i18n="window.aboutTitle">About Me.txt — Notepad</h2>
+            <button class="window-close" type="button" aria-label="Close About Me window" data-i18n-aria="window.aboutClose">×</button>
+          </div>
+          <div class="window-content">
+            <h3 data-i18n="about.greeting">Hi, I'm Leandro.</h3>
+            <p data-i18n="about.paragraph1">I'm a Spanish developer focused on mobile applications, backend systems, and data-driven solutions.</p>
+            <p data-i18n="about.paragraph2">I work with Kotlin, Flutter, and Python. I'm interested in building scalable products that turn complex ideas into simple experiences.</p>
+            <p data-i18n="about.paragraph3">I also explore Java, C#, Docker, Android, and machine learning tools.</p>
+          </div>
+        </section>
+        <section class="desktop-window" data-window="tech" role="dialog" aria-modal="false" aria-labelledby="tech-title" hidden>
+          <div class="window-titlebar">
+            <h2 class="window-title" id="tech-title" data-i18n="window.techTitle">Technologies.txt — Notepad</h2>
+            <button class="window-close" type="button" aria-label="Close Technologies window" data-i18n-aria="window.techClose">×</button>
+          </div>
+          <div class="window-content">
+            <h3 data-i18n="tech.heading">Languages and technologies</h3>
+            <h4 data-i18n="tech.languages">Languages</h4>
+            <div class="tech-list"><span>Kotlin</span><span>Python</span><span>Java</span><span>C#</span></div>
+            <h4 data-i18n="tech.mobile">Mobile development</h4>
+            <div class="tech-list"><span>Flutter</span><span>Android</span></div>
+            <h4 data-i18n="tech.tools">Tools</h4>
+            <div class="tech-list"><span>Docker</span><span>Git</span></div>
+            <h4 data-i18n="tech.interests">Areas of interest</h4>
+            <div class="tech-list"><span>Machine Learning</span><span>Backend</span></div>
+          </div>
+        </section>
+        <section class="desktop-window" data-window="contact" role="dialog" aria-modal="false" aria-labelledby="contact-title" hidden>
+          <div class="window-titlebar">
+            <h2 class="window-title" id="contact-title" data-i18n="window.contactTitle">Contact.txt — Notepad</h2>
+            <button class="window-close" type="button" aria-label="Close Contact window" data-i18n-aria="window.contactClose">×</button>
+          </div>
+          <div class="window-content">
+            <h3 data-i18n="contact.greeting">Let's connect.</h3>
+            <p data-i18n="contact.intro">I'm open to conversations about projects, technology, and new opportunities.</p>
+            <p><a href="mailto:lorellana.dev@gmail.com">lorellana.dev@gmail.com</a></p>
+            <p><a href="https://github.com/leandroom29" target="_blank" rel="noreferrer">GitHub ↗</a></p>
+            <p><a href="https://www.linkedin.com/in/leandro-orellana-martos-2998a1331/" target="_blank" rel="noreferrer">LinkedIn ↗</a></p>
+          </div>
+        </section>
+        <section class="desktop-window" data-window="projects" role="dialog" aria-modal="false" aria-labelledby="projects-title" hidden>
+          <div class="window-titlebar">
+            <h2 class="window-title" id="projects-title" data-i18n="window.projectsTitle">Projects — File Explorer</h2>
+            <button class="window-close" type="button" aria-label="Close Projects folder" data-i18n-aria="window.projectsClose">×</button>
+          </div>
+          <div class="window-content">
+            <h3 data-i18n="projects.heading">My projects</h3>
+            <p data-i18n="projects.intro">Open an application to view its details.</p>
+            <div class="project-files" aria-label="Project applications" data-i18n-aria="projects.aria"></div>
+          </div>
+        </section>
+        <section class="desktop-window" data-window="project-app" role="dialog" aria-modal="false" aria-labelledby="project-app-title" hidden>
+          <div class="window-titlebar">
+            <h2 class="window-title" id="project-app-title" data-i18n="window.application">Application</h2>
+            <button class="window-close" type="button" aria-label="Close application" data-i18n-aria="window.applicationClose">×</button>
+          </div>
+          <div class="window-content project-app">
+            <h3 data-project-name></h3>
+            <p data-project-description></p>
+            <h4 data-i18n="project.languages">Languages and technologies</h4>
+            <div class="tech-list" data-project-tech></div>
+            <a class="repo-link" data-project-repo href="#" target="_blank" rel="noreferrer" data-i18n="project.repository">Open GitHub repository ↗</a>
+            <p data-project-repo-unavailable hidden data-i18n="project.unpublished">The repository hasn't been published yet.</p>
+          </div>
+        </section>
+        <section class="desktop-window command-window" data-window="command" role="dialog" aria-modal="false" aria-labelledby="command-title" hidden>
+          <div class="window-titlebar">
+            <h2 class="window-title" id="command-title" data-i18n="window.consoleTitle">kalgrid_cmd.exe — KalGrid Console</h2>
+            <button class="window-close" type="button" aria-label="Close command console" data-i18n-aria="window.consoleClose">×</button>
+          </div>
+          <div class="command-content">
+            <div class="command-output" aria-live="polite" aria-label="Console output" data-i18n-aria="console.output"></div>
+            <div class="command-file-view" hidden>
+              <pre class="command-file-text"></pre>
+              <p class="command-file-help" data-i18n="console.returnHelp">Press <kbd>Ctrl</kbd> + <kbd>C</kbd> to return to KalGrid CMD.</p>
+            </div>
+            <form class="command-form" autocomplete="off">
+              <label class="command-prompt" for="command-input"></label>
+              <input id="command-input" class="command-input" name="command" type="text" spellcheck="false" autocapitalize="off" aria-label="Command" data-i18n-aria="console.command">
+            </form>
+          </div>
+        </section>
+        <section class="desktop-window settings-window" data-window="settings" role="dialog" aria-modal="false" aria-labelledby="settings-title" hidden>
+          <div class="window-titlebar">
+            <h2 class="window-title" id="settings-title" data-i18n="settings.windowTitle">settings.exe — System Settings</h2>
+            <button class="window-close" type="button" aria-label="Close system settings" data-i18n-aria="settings.close">×</button>
+          </div>
+          <div class="window-content settings-content">
+            <p class="settings-kicker" data-i18n="settings.kicker">KALOS // DEVICE CONFIGURATION</p>
+            <h3 data-i18n="settings.heading">System information</h3>
+            <p data-i18n="settings.description">Hardware resources assigned to this workstation.</p>
+            <dl class="system-specs">
+              <div class="system-spec">
+                <dt data-i18n="settings.device">Workstation</dt>
+                <dd data-i18n="settings.deviceValue">Kalos Neonwave N-84</dd>
+              </div>
+              <div class="system-spec">
+                <dt data-i18n="settings.processor">Processor</dt>
+                <dd data-i18n="settings.processorValue">AetherCore Prism X8 · 16 cores / 32 threads · up to 5.2 GHz</dd>
+              </div>
+              <div class="system-spec">
+                <dt data-i18n="settings.memory">Installed memory</dt>
+                <dd data-i18n="settings.memoryValue">32 GB · 2 × 16 GB Chromaflux DDR5-6000</dd>
+              </div>
+              <div class="system-spec">
+                <dt data-i18n="settings.availableMemory">Memory available to KalOS</dt>
+                <dd data-i18n="settings.availableMemoryValue">31.7 GB usable · 0.3 GB reserved for system hardware</dd>
+              </div>
+              <div class="system-spec">
+                <dt data-i18n="settings.graphics">Graphics</dt>
+                <dd data-i18n="settings.graphicsValue">NeonDrive Aurora 16 · 16 GB GDDR6X</dd>
+              </div>
+              <div class="system-spec">
+                <dt data-i18n="settings.storage">Storage</dt>
+                <dd data-i18n="settings.storageValue">2 TB · Hyperion Pulse NVMe Gen 5</dd>
+              </div>
+              <div class="system-spec">
+                <dt data-i18n="settings.mainboard">Mainboard</dt>
+                <dd data-i18n="settings.mainboardValue">Kalos Starforge Z84 · LumenLink 5.0</dd>
+              </div>
+              <div class="system-spec">
+                <dt data-i18n="settings.network">Network</dt>
+                <dd data-i18n="settings.networkValue">Etherwave 10 GbE · SynthFi 7</dd>
+              </div>
+              <div class="system-spec">
+                <dt data-i18n="settings.operatingSystem">Operating system</dt>
+                <dd data-i18n="settings.operatingSystemValue">KalOS 84 · Build 1984.10</dd>
+              </div>
+            </dl>
+            <p class="settings-note" data-i18n="settings.note">Simulated workstation specifications · Kalos Systems asset profile</p>
+          </div>
+        </section>
+      </div>
+    </div>
+    <section class="start-menu" id="start-menu" aria-label="System applications" data-i18n-aria="start.aria" hidden>
+      <div class="start-menu-heading">
+        <span class="start-menu-kicker">KALGRID // SYSTEM</span>
+        <h2 data-i18n="start.heading">Applications</h2>
+      </div>
+      <button class="start-app" type="button" data-start-app="command">
+        <span class="start-app-icon command-app-icon" aria-hidden="true">&gt;_</span>
+        <span class="start-app-copy">
+          <strong>kalgrid_cmd.exe</strong>
+          <small data-i18n="start.console">Command console</small>
+        </span>
+      </button>
+      <button class="start-app" type="button" data-start-app="settings">
+        <span class="start-app-icon settings-app-icon" aria-hidden="true">CFG</span>
+        <span class="start-app-copy">
+          <strong>settings.exe</strong>
+          <small data-i18n="start.settings">System settings</small>
+        </span>
+      </button>
+    </section>
+    <div class="desktop-taskbar">
+      <button class="taskbar-start" type="button" aria-label="Open applications menu" data-i18n-aria="taskbar.openMenu" aria-expanded="false" aria-controls="start-menu">
+        <img class="taskbar-logo" src="./img/kalos_logo.png" alt="">
+      </button>
+      <div class="taskbar-apps" aria-label="Open windows" data-i18n-aria="taskbar.openWindows"></div>
+      <span class="taskbar-label" data-i18n="taskbar.label">Kalos Systems · Desktop</span>
+    </div>
+  </header>
+  <script src="./scripts/i18n.js" defer></script>
+  <script src="./scripts/desktop.js" defer></script>
+</body>
+</html>
